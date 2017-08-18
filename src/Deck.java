@@ -1,8 +1,8 @@
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.http.client.methods.HttpGet;
 
 public class Deck {
 
