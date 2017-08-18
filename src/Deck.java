@@ -9,6 +9,7 @@ public class Deck {
 
 	private ArrayList<Card> cardDeck;
 	private ObjectMapper mapper;
+	private Scanner userInput;
 	//private static String endpoint = "http://nav-deckofcards.herkuapp.com/shuffle";
 	
 	//Construct
@@ -16,8 +17,6 @@ public class Deck {
 		this.cardDeck = new ArrayList<>();
 		this. mapper = new ObjectMapper();
 	}
-
-
 
 
 	//Create deck from endpoint
@@ -92,20 +91,21 @@ public class Deck {
 	}
 
 	public String changeEndpoint (String endpoint) {
-		Scanner userInput = new Scanner(System.in);
-		System.out.println("Welcome to Blackjack!");
-		System.out.println("The default Endpoints is" + endpoint);
+		
+		userInput = new Scanner(System.in);
+		System.out.println("The default Endpoints is");
 		System.out.println("Do you want to change endpoint (1)Yes (2)No");
 		int response = userInput.nextInt();
 
 		if(response == 1) {
-			System.out.println("Please sumbit the new endpoint:");
-			endpoint = userInput.nextLine();
-
-		}else {
+			//System.out.println("Please sumbit the new endpoint:");
+			endpoint = userInput.nextLine().toString();
+		}
+		else {
 			System.out.println("Endpoint not changed");
 		}
 		return endpoint;
+		
 	}
 	
 	//print method

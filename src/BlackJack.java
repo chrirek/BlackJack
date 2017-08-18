@@ -5,17 +5,18 @@ public class BlackJack {
 
 	@SuppressWarnings("unused")
 	private static Scanner userInput;
- 
+	private String endpoint;
 
 	public static void main(String[] args) {
-
 		
-		String endpoint = "http://nav-deckofcards.herokuapp.com/shuffle";
+		
+
+		System.out.println("Welcome to Blackjack!");
+
 		//playingDeck will be the deck the dealer holds
 		Deck playingDeck = new Deck();
-		endpoint = playingDeck.changeEndpoint(endpoint);
-		playingDeck.createFullDeck(endpoint);
-		//playingDeck.shuffle();
+		
+		playingDeck.createFullDeck("http://nav-deckofcards.herokuapp.com/shuffle");
 
 		//playerCards will be the cards the player has in their hand
 		Deck playerCards = new Deck();
@@ -134,11 +135,19 @@ public class BlackJack {
 
 		}
 		//Game is over
-		System.out.println("Game over! Out of cash");
+		System.out.println("Game over!");
 
 		//Close Scanner
 		userInput.close();
 
+	}
+
+	public String getEndpoint() {
+		return endpoint;
+	}
+
+	public void setEndpoint(String endpoint) {
+		this.endpoint = endpoint;
 	}
 }
 
