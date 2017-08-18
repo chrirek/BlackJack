@@ -1,21 +1,22 @@
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Deck {
 
 	private ArrayList<Card> cardDeck;
-	//private String endpoint = "http://nav-deckofcards.herokuapp.com/shuffle";
 	private ObjectMapper mapper;
-
+	//private static String endpoint = "http://nav-deckofcards.herkuapp.com/shuffle";
+	
 	//Construct
 	Deck () {
 		this.cardDeck = new ArrayList<>();
 		this. mapper = new ObjectMapper();
 	}
-	
+
 
 
 
@@ -90,6 +91,23 @@ public class Deck {
 		return totalValue;
 	}
 
+	public String changeEndpoint (String endpoint) {
+		Scanner userInput = new Scanner(System.in);
+		System.out.println("Welcome to Blackjack!");
+		System.out.println("The default Endpoints is" + endpoint);
+		System.out.println("Do you want to change endpoint (1)Yes (2)No");
+		int response = userInput.nextInt();
+
+		if(response == 1) {
+			System.out.println("Please sumbit the new endpoint:");
+			endpoint = userInput.nextLine();
+
+		}else {
+			System.out.println("Endpoint not changed");
+		}
+		return endpoint;
+	}
+	
 	//print method
 	@Override
 	public String toString() {
@@ -106,7 +124,7 @@ public class Deck {
 	public void removeCard(int i){
 		this.cardDeck.remove(i);
 	}
-	
+
 	//Get card from deck
 	public Card getCard(int i){
 		return this.cardDeck.get(i);
@@ -119,7 +137,7 @@ public class Deck {
 
 	//Draw card from deck
 	public void draw(Deck comingFrom) {
-		
+
 		//Add card to this deck from whatever deck its coming from
 		this.cardDeck.add(comingFrom.getCard(0));
 
