@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.client.methods.HttpGet;
 
 public class Deck {
 
@@ -15,7 +16,8 @@ public class Deck {
 		this. mapper = new ObjectMapper();
 	}
 	
-	
+
+
 
 	//Create deck from endpoint
 	public ArrayList<Card> createFullDeck (String endpoint) {
