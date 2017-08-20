@@ -3,17 +3,16 @@ import java.util.Scanner;
 
 public class BlackJack {
 
+	
 	@SuppressWarnings("unused")
 	private static Scanner userInput;
 	private String endpoint;
 
 	public static void main(String[] args) {
 		
-		
-
 		System.out.println("Welcome to Blackjack!");
 
-		//playingDeck will be the deck the dealer holds
+		//playingDeck will be the deck Magnus holds
 		Deck playingDeck = new Deck();
 		
 		playingDeck.createFullDeck("http://nav-deckofcards.herokuapp.com/shuffle");
@@ -24,7 +23,7 @@ public class BlackJack {
 		//playerMoney holds players cash $$
 		double playerMoney = 100.0;
 
-		//dealerCards will be the cards the dealer has in their hand
+		//dealerCards will be the cards Magnus has in his hand
 		Deck dealerCards = new Deck();
 
 		//Scanner for user input
@@ -64,15 +63,17 @@ public class BlackJack {
 				System.out.println("Your hand is currently valued at: " + playerCards.cardsValue());
 
 				//Display Magnus cards
-				System.out.println("Dealer Hand: " + dealerCards.getCard(0).toString() + " and [hidden]");
+				System.out.println("Magnus Hand: " + dealerCards.getCard(0).toString() + " and [hidden]");
 
 				//What do they want to do
 				System.out.println("Would you like to (1)Hit or (2)Stand");
 				int response = userInput.nextInt();	
+				
 				//They hit
 				if(response == 1) {
 					playerCards.draw(playingDeck);
 					System.out.println("You draw a:" + playerCards.getCard(playerCards.deckSize()-1).toString());
+					
 					//Bust if they go over 21
 					if(playerCards.cardsValue() > 21){
 						System.out.println("Bust. Currently valued at: " + playerCards.cardsValue());
@@ -89,25 +90,26 @@ public class BlackJack {
 
 			}
 
-			//Reveal Magnus Cards
-			System.out.println("Dealer Cards:" + dealerCards.toString());
-			//See if dealer has more points than player
+			//Reveal Magnus's Cards
+			System.out.println("Magnus's Cards:" + dealerCards.toString());
+			
+			//See if Magnus has more points than player
 			if((dealerCards.cardsValue() > playerCards.cardsValue())&&endRound == false) {
-				System.out.println("Dealer beats you " + dealerCards.cardsValue() + " to " + playerCards.cardsValue());
+				System.out.println("Magnus beats you " + dealerCards.cardsValue() + " to " + playerCards.cardsValue());
 				playerMoney -= playerBet;
 				endRound = true;
 			}
 			//Magnus hits until he beats the player, modify to 17 for more realistic gameplay
 			while((dealerCards.cardsValue() <  playerCards.cardsValue()) && endRound == false) {
 				dealerCards.draw(playingDeck);
-				System.out.println("Dealer draws: " + dealerCards.getCard(dealerCards.deckSize()-1).toString());
+				System.out.println("Magnus draws: " + dealerCards.getCard(dealerCards.deckSize()-1).toString());
 			}
-			//Display value of dealer
-			System.out.println("Dealers hand value: " + dealerCards.cardsValue());
+			//Display value of Magnus's cards
+			System.out.println("Magnus hand value: " + dealerCards.cardsValue());
 
 			//Determine if Magnus busted
 			if((dealerCards.cardsValue()>21)&& endRound == false) {
-				System.out.println("Dealer Busts. You win!");
+				System.out.println("Magnus Busts. You win!");
 				playerMoney += playerBet;
 				endRound = true;
 			}
@@ -124,7 +126,7 @@ public class BlackJack {
 			}
 			else if(endRound == false) //dealer wins
 			{
-				System.out.println("Dealer wins.");
+				System.out.println("Magnus wins.");
 				playerMoney -= playerBet;
 			}
 
