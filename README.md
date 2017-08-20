@@ -1,3 +1,1 @@
 # Blackjack
-
-Info blabla
